@@ -1,3 +1,5 @@
+// REALIZADO POR GRUPO 2
+// AXEL, PAULA, HENRY, ERICK
 #include <iostream>
 using namespace std;
 
@@ -6,7 +8,7 @@ using namespace std;
 
 const char * nombre_archivo = "archivo.dat";
 
-struct Estudiante{
+struct Traductor{
 	char palabras[20];
 	char traduccion[35];
 	char funcionalidad[250];
@@ -50,8 +52,8 @@ main(){
                 Borrar();
                 break;
             case 0:
-                cout << "Saliendo del programa";
-                break;
+                cout << "Ha salido del programa";
+                return 0;
             default:
                 cout << "Opcion invalida, ingrese de nuevo";
                 break;
@@ -61,6 +63,7 @@ main(){
         cin >> resp;
 
     } while (resp == 's' || resp == 'S');
+    
     
     return 0;
 }
@@ -74,22 +77,22 @@ void Leer(){
 		archivo = fopen(nombre_archivo, "w+b");
 	}
 	
-	Estudiante estudiante;
+	Traductor traductor;
 	// Determinan el indice o la posicion donde esta el registro
 	int id=0;
 	// leer lo que esta en el archivo
-	fread(&estudiante,sizeof(Estudiante), 1, archivo);
+	fread(&traductor,sizeof(Traductor), 1, archivo);
 	cout<<"___________________________"<<endl;
-	cout<<"ID"<<"|"<<"   Palabra   "<<"|"<<"          Traduccion         "
+	cout<<"ID "<<"|"<<"    Palabra   "<<"|"<<"  Traduccion  "
 	<<"|"<<"      Funcionalidad      "<<endl;
 	do{
 		
-	    cout<<id<<"|"<<estudiante.palabras<<"|"<<estudiante.traduccion
-		<<"|"<<estudiante.funcionalidad<<endl;
+	    cout<<id<<"  |   "<<traductor.palabras<<"   |   "<<traductor.traduccion
+		<<"    |     "<<traductor.funcionalidad<<endl;
 		// ir aumentando con este operador xd
 		
 		// IR CAMBIANDO DE REGISTRO
-		fread(&estudiante,sizeof(Estudiante), 1, archivo);
+		fread(&traductor,sizeof(Traductor), 1, archivo);
 
 		id+=1;
 				// feof hasta el final del registro de los archivos
@@ -106,7 +109,7 @@ void Crear(){
 	FILE * archivo = fopen(nombre_archivo, "a+b");
 	char res;
 	// declarar
-	Estudiante estudiante;
+	Traductor traductor;
 		
 	do{
 		// Limpiar el flujo del archivo
@@ -114,17 +117,17 @@ void Crear(){
 		
 		// necesitamos el get de todo
 		cout<<"Ingrese la Palabra: ";
-		cin.getline(estudiante.palabras, 20);
+		cin.getline(traductor.palabras, 20);
 		
 		cout<<"Ingrese la traduccion de la palabra: ";
-		cin.getline(estudiante.traduccion, 35);
+		cin.getline(traductor.traduccion, 35);
 		
 		cout<<"Ingrese su funcionalidad: ";
-		cin.getline(estudiante.funcionalidad, 250);
+		cin.getline(traductor.funcionalidad, 250);
 		
 		// tenemos que escribir los registros
 		// bandera default 1
-		fwrite(&estudiante,sizeof(Estudiante), 1, archivo);
+		fwrite(&traductor,sizeof(Traductor), 1, archivo);
 		
 		cout<<"Desea ingresar otra palabra(s/n): ";
 		cin>>res;
@@ -142,17 +145,19 @@ void Actualizar(){
 	// r+b abre fichero para escritura, actualizar crea y borra
 	FILE * archivo = fopen(nombre_archivo, "r+b");
 	// declarar
-	Estudiante estudiante;
+	Traductor traductor;
 	
 	// preguntarle por el id
 	int id=0;
+	
+	Leer(); 
 	
 	cout<<"Ingrese el ID que desea Modificar: ";
 	cin>>id;
 	// posicionar mi puntero fseek para posicionar puntero en una determinada posicion
 	
 	// BUSCAR POR EL ID
-	fseek(archivo,id * sizeof(Estudiante), SEEK_SET);
+	fseek(archivo,id * sizeof(Traductor), SEEK_SET);
 	
 		cin.ignore();
 		
@@ -160,17 +165,17 @@ void Actualizar(){
 		
 		// necesitamos el get de todo
 		cout<<"Ingrese la Palabra: ";
-		cin.getline(estudiante.palabras, 20);
+		cin.getline(traductor.palabras, 20);
 		
 		cout<<"Ingrese la traduccion de la palabra: ";
-		cin.getline(estudiante.traduccion, 35);
+		cin.getline(traductor.traduccion, 35);
 		
 		cout<<"Ingrese su Funcionalidad: ";
-		cin.getline(estudiante.funcionalidad, 250);
+		cin.getline(traductor.funcionalidad, 250);
 		
 		// tenemos que escribir los registros
 		// bandera default 1
-		fwrite(&estudiante,sizeof(Estudiante), 1, archivo);
+		fwrite(&traductor,sizeof(Traductor), 1, archivo);
 	// cerrar el archivo
 	fclose(archivo);	
 	// mandar a llamar a leer
@@ -182,7 +187,7 @@ void Borrar(){
 	FILE * archivo = fopen(nombre_archivo, "rb");
 	FILE * archivo_temp = fopen(nombre_archivo_temp, "w+b");
 	
-	Estudiante estudiante;
+	Traductor traductor;
 	
 	int id=0, id_n=0;
 	
@@ -190,12 +195,12 @@ void Borrar(){
 	cin>>id;
 	
 	// recorrer el archivo principal
-	while(fread(&estudiante,sizeof(Estudiante), 1, archivo)){
+	while(fread(&traductor,sizeof(Traductor), 1, archivo)){
 		
 	// en el archivo nuevo agrego todos
 	// menos el que quiero que se elimine
 		if(id_n != id){
-		    fwrite(&estudiante,sizeof(Estudiante), 1, archivo_temp);
+		    fwrite(&traductor,sizeof(Traductor), 1, archivo_temp);
 
 		}
 	// se incrementa
@@ -212,10 +217,10 @@ void Borrar(){
 	archivo = fopen(nombre_archivo, "wb");
 	
 	// recorrido a archivo_temp
-	while(fread(&estudiante,sizeof(Estudiante), 1, archivo_temp)){
+	while(fread(&traductor,sizeof(Traductor), 1, archivo_temp)){
 		
 		// escribo en mi archivo
-		    fwrite(&estudiante,sizeof(Estudiante), 1, archivo);
+		    fwrite(&traductor,sizeof(Traductor), 1, archivo);
 }
 
     fclose(archivo);
