@@ -7,8 +7,7 @@ using namespace std;
 const char * nombre_archivo = "archivo.dat";
 
 struct Estudiante{
-	int codigo;
-	char nombres[50];
+	char palabras[50];
 	char apellidos[50];
 	int telefono;
 };
@@ -81,11 +80,11 @@ void Leer(){
 	// leer lo que esta en el archivo
 	fread(&estudiante,sizeof(Estudiante), 1, archivo);
 	cout<<"___________________________"<<endl;
-	cout<<"ID"<<"|"<<"Codigo"<<"|"<<"   Nombres   "<<"|"<<"     Apellidos   "
+	cout<<"ID"<<"|"<<"   Palabra   "<<"|"<<"     Apellidos   "
 	<<"|"<<"      Telefono      "<<endl;
 	do{
 		
-	    cout<<id<<"|"<<estudiante.codigo<<"|"<<estudiante.nombres<<"|"<<estudiante.apellidos
+	    cout<<id<<"|"<<estudiante.palabras<<"|"<<estudiante.apellidos
 		<<"|"<<estudiante.telefono<<endl;
 		// ir aumentando con este operador xd
 		
@@ -112,13 +111,10 @@ void Crear(){
 	do{
 		// Limpiar el flujo del archivo
 		fflush(stdin);
-		cout<<"Ingrese Codigo: ";
-		cin>>estudiante.codigo;
-		cin.ignore();
 		
 		// necesitamos el get de todo
-		cout<<"Ingrese Nombres: ";
-		cin.getline(estudiante.nombres, 50);
+		cout<<"Ingrese la Palabra: ";
+		cin.getline(estudiante.palabras, 50);
 		
 		cout<<"Ingrese Apellidos: ";
 		cin.getline(estudiante.apellidos, 50);
@@ -158,15 +154,13 @@ void Actualizar(){
 	// BUSCAR POR EL ID
 	fseek(archivo,id * sizeof(Estudiante), SEEK_SET);
 	
-		cout<<"Ingrese Codigo: ";
-		cin>>estudiante.codigo;
 		cin.ignore();
 		
 		// Crear(); y actualizar();
 		
 		// necesitamos el get de todo
-		cout<<"Ingrese Nombres: ";
-		cin.getline(estudiante.nombres, 50);
+		cout<<"Ingrese la Palabra: ";
+		cin.getline(estudiante.palabras, 50);
 		
 		cout<<"Ingrese Apellidos: ";
 		cin.getline(estudiante.apellidos, 50);
