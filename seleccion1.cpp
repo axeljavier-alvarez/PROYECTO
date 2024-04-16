@@ -7,9 +7,9 @@ using namespace std;
 const char * nombre_archivo = "archivo.dat";
 
 struct Estudiante{
-	char palabras[50];
-	char apellidos[50];
-	int telefono;
+	char palabras[20];
+	char traduccion[35];
+	char funcionalidad[250];
 };
 
 // metodo de leer
@@ -80,12 +80,12 @@ void Leer(){
 	// leer lo que esta en el archivo
 	fread(&estudiante,sizeof(Estudiante), 1, archivo);
 	cout<<"___________________________"<<endl;
-	cout<<"ID"<<"|"<<"   Palabra   "<<"|"<<"     Apellidos   "
-	<<"|"<<"      Telefono      "<<endl;
+	cout<<"ID"<<"|"<<"   Palabra   "<<"|"<<"          Traduccion         "
+	<<"|"<<"      Funcionalidad      "<<endl;
 	do{
 		
-	    cout<<id<<"|"<<estudiante.palabras<<"|"<<estudiante.apellidos
-		<<"|"<<estudiante.telefono<<endl;
+	    cout<<id<<"|"<<estudiante.palabras<<"|"<<estudiante.traduccion
+		<<"|"<<estudiante.funcionalidad<<endl;
 		// ir aumentando con este operador xd
 		
 		// IR CAMBIANDO DE REGISTRO
@@ -114,19 +114,19 @@ void Crear(){
 		
 		// necesitamos el get de todo
 		cout<<"Ingrese la Palabra: ";
-		cin.getline(estudiante.palabras, 50);
+		cin.getline(estudiante.palabras, 20);
 		
-		cout<<"Ingrese Apellidos: ";
-		cin.getline(estudiante.apellidos, 50);
+		cout<<"Ingrese la traduccion de la palabra: ";
+		cin.getline(estudiante.traduccion, 35);
 		
-		cout<<"Ingrese Telefono: ";
-		cin>>estudiante.telefono;
+		cout<<"Ingrese su funcionalidad: ";
+		cin.getline(estudiante.funcionalidad, 250);
 		
 		// tenemos que escribir los registros
 		// bandera default 1
 		fwrite(&estudiante,sizeof(Estudiante), 1, archivo);
 		
-		cout<<"Desea ingresar otro estudiante(s/n): ";
+		cout<<"Desea ingresar otra palabra(s/n): ";
 		cin>>res;
 		
 	}while(res=='s' || res=='S');
@@ -160,13 +160,13 @@ void Actualizar(){
 		
 		// necesitamos el get de todo
 		cout<<"Ingrese la Palabra: ";
-		cin.getline(estudiante.palabras, 50);
+		cin.getline(estudiante.palabras, 20);
 		
-		cout<<"Ingrese Apellidos: ";
-		cin.getline(estudiante.apellidos, 50);
+		cout<<"Ingrese la traduccion de la palabra: ";
+		cin.getline(estudiante.traduccion, 35);
 		
-		cout<<"Ingrese Telefono: ";
-		cin>>estudiante.telefono;
+		cout<<"Ingrese su Funcionalidad: ";
+		cin.getline(estudiante.funcionalidad, 250);
 		
 		// tenemos que escribir los registros
 		// bandera default 1
