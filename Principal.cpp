@@ -1,25 +1,30 @@
 // REALIZADO POR GRUPO 2
 // AXEL, PAULA, HENRY, ERICK
 #include <iostream>
+#include "Leer.cpp" 
+
 using namespace std;
 
 // nombre del archivo no cambia en la variable
 // forma dinamica no sera tamaño fijo sino puntero
 
-const char * nombre_archivo = "archivo.dat";
 
-struct Traductor{
+// ARCHIVO DE ESTRUCTURAS
+// const char * nombre_archivo = "archivo.dat";
+
+
+/* struct Traductor{
 	char palabras[20];
 	char traduccion[35];
 	char funcionalidad[250];
-};
+}; */
 
 /* DECLARAR LOS METODOS LEER, CREAR, ACTUALIZAR Y BORRAR*/
 // metodo de leer
 void Leer();
 // metodo de crear
-void Crear();
-void Actualizar(); //Metodo Actualizar.
+// void Crear();
+// void Actualizar(); //Metodo Actualizar.
 void Borrar(); //Metodo Borrar.
 
 // MENU CON LAS OPCIONES ORDENADAS
@@ -42,13 +47,13 @@ main(){
                 Leer();
                 break;
             case 2:
-                Crear();
+               //  Crear();
                 break;
             case 3:
-                Actualizar();
+               // Actualizar();
                 break;
             case 4:
-                Borrar();
+               // Borrar();
                 break;
             case 0:
                 cout << "Ha salido del programa";
@@ -67,42 +72,7 @@ main(){
     return 0;
 }
 
-void Leer(){
-	system("cls");
-		// rb abre fichero para lectura
-	FILE * archivo = fopen(nombre_archivo, "rb");
-	
-	if(!archivo){
-		archivo = fopen(nombre_archivo, "w+b");
-	}
-	
-	Traductor traductor;
-	// Determinan el indice o la posicion donde esta el registro
-	int id=0;
-	// leer lo que esta en el archivo
-	fread(&traductor,sizeof(Traductor), 1, archivo);
-	cout<<"___________________________"<<endl;
-	cout<<"ID "<<"|"<<"    Palabra   "<<"|"<<"  Traduccion  "
-	<<"|"<<"      Funcionalidad      "<<endl;
-	do{
-		
-	    cout<<id<<"  |   "<<traductor.palabras<<"   |   "<<traductor.traduccion
-		<<"    |     "<<traductor.funcionalidad<<endl;
-		// ir aumentando con este operador xd
-		
-		// IR CAMBIANDO DE REGISTRO
-		fread(&traductor,sizeof(Traductor), 1, archivo);
-
-		id+=1;
-				// feof hasta el final del registro de los archivos
-
-	}while(feof(archivo)==0);
-	
-	// cerrar ese archivo de lectura xd
-	fclose(archivo);
-}
-
-void Crear(){
+/* void Crear(){
 	// abre o crear un fichero binario
 	// abrir el archivo
 	FILE * archivo = fopen(nombre_archivo, "a+b");
@@ -138,9 +108,9 @@ void Crear(){
 	
 	// mandar a llamar a leer
 	Leer();
-}
+} */
 
-void Actualizar(){
+/* void Actualizar(){
 	FILE * archivo = fopen(nombre_archivo, "r+b"); // Lectura o escritura de un archivo binario.
 	Traductor traductor;
 	int id=0;
@@ -162,9 +132,9 @@ void Actualizar(){
 		
 	fclose(archivo);
 	Leer();
-}
+} */
 
-void Borrar(){
+/* void Borrar(){
 	const char *nombre_archivo_temp = "archivo_temp.dat";
 	FILE * archivo_temp = fopen(nombre_archivo_temp, "w+b");
 	FILE * archivo = fopen(nombre_archivo, "rb");
@@ -192,5 +162,5 @@ void Borrar(){
 	fclose(archivo);
 	fclose(archivo_temp);
 	Leer();
-}
+} */
 
