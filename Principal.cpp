@@ -3,30 +3,10 @@
 #include <iostream>
 #include "Leer.cpp" 
 #include "Crear.cpp"
+#include "Borrar.cpp"
 using namespace std;
 
-// nombre del archivo no cambia en la variable
-// forma dinamica no sera tamaño fijo sino puntero
 
-
-// ARCHIVO DE ESTRUCTURAS
-// const char * nombre_archivo = "archivo.dat";
-
-
-/* struct Traductor{
-	char palabras[20];
-	char traduccion[35];
-	char funcionalidad[250];
-}; */
-
-/* DECLARAR LOS METODOS LEER, CREAR, ACTUALIZAR Y BORRAR*/
-// metodo de leer
-
-// void Crear();
-// void Actualizar(); //Metodo Actualizar.
-void Borrar(); //Metodo Borrar.
-
-// MENU CON LAS OPCIONES ORDENADAS
 main(){
 	int opcion;
      char resp;
@@ -52,7 +32,7 @@ main(){
                // Actualizar();
                 break;
             case 4:
-               // Borrar();
+               Borrar();
                 break;
             case 0:
                 cout << "Ha salido del programa";
@@ -97,33 +77,4 @@ main(){
 	Leer();
 } */
 
-/* void Borrar(){
-	const char *nombre_archivo_temp = "archivo_temp.dat";
-	FILE * archivo_temp = fopen(nombre_archivo_temp, "w+b");
-	FILE * archivo = fopen(nombre_archivo, "rb");
-	Traductor traductor;
-	
-	int id=0,id_n=0;
-	cout<<"Ingrese el ID a eliminar: ";
-	cin>>id;
-	
-	while(fread(&traductor,sizeof(Traductor), 1, archivo)){
-	    	if (id_n!=id){
-	    		fwrite(&traductor,sizeof(Traductor), 1, archivo_temp);
-	    }
-	    id_n++;
-	}
-	fclose(archivo);
-	fclose(archivo_temp);
-	
-	archivo_temp = fopen(nombre_archivo_temp, "rb");
-	archivo = fopen(nombre_archivo, "wb");
-	
-	while(fread(&traductor,sizeof(Traductor), 1, archivo_temp)){
-		fwrite(&traductor,sizeof(Traductor), 1, archivo);
-}
-	fclose(archivo);
-	fclose(archivo_temp);
-	Leer();
-} */
 
