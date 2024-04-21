@@ -20,7 +20,7 @@ void Leer();
 // metodo de crear
 void Crear();
 void Actualizar(); //Metodo Actualizar.
-// void Borrar(); //Metodo Borrar.
+void Borrar(); //Metodo Borrar.
 
 // MENU CON LAS OPCIONES ORDENADAS
 main(){
@@ -48,7 +48,7 @@ main(){
                 Actualizar();
                 break;
             case 4:
-                // Borrar();
+                Borrar();
                 break;
             case 0:
                 cout << "Ha salido del programa";
@@ -165,7 +165,7 @@ void Crear(){
 }
 
 
-/* void Borrar(){
+void Borrar(){
 	const char *nombre_archivo_temp = "archivo_temp.dat";
 	FILE * archivo_temp = fopen(nombre_archivo_temp, "w+b");
 	FILE * archivo = fopen(nombre_archivo, "rb");
@@ -193,7 +193,7 @@ void Crear(){
 	fclose(archivo);
 	fclose(archivo_temp);
 	Leer();
-} */
+}
 
 
 
