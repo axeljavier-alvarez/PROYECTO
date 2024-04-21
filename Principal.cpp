@@ -19,7 +19,7 @@ struct Traductor{
 void Leer();
 // metodo de crear
 void Crear();
-// void Actualizar(); //Metodo Actualizar.
+void Actualizar(); //Metodo Actualizar.
 // void Borrar(); //Metodo Borrar.
 
 // MENU CON LAS OPCIONES ORDENADAS
@@ -45,7 +45,7 @@ main(){
                 Crear();
                 break;
             case 3:
-                // Actualizar();
+                Actualizar();
                 break;
             case 4:
                 // Borrar();
@@ -140,7 +140,7 @@ void Crear(){
 	Leer();
 } 
 
-/* void Actualizar(){
+ void Actualizar(){
 	FILE * archivo = fopen(nombre_archivo, "r+b"); // Lectura o escritura de un archivo binario.
 	Traductor traductor;
 	int id=0;
@@ -162,7 +162,7 @@ void Crear(){
 		
 	fclose(archivo);
 	Leer();
-} */
+}
 
 
 /* void Borrar(){
