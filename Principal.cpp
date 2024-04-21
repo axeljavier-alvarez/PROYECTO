@@ -18,7 +18,7 @@ struct Traductor{
 // metodo de leer
 void Leer();
 // metodo de crear
-// void Crear();
+void Crear();
 // void Actualizar(); //Metodo Actualizar.
 // void Borrar(); //Metodo Borrar.
 
@@ -42,7 +42,7 @@ main(){
                 Leer();
                 break;
             case 2:
-                // Crear();
+                Crear();
                 break;
             case 3:
                 // Actualizar();
@@ -102,7 +102,7 @@ void Leer(){
 	fclose(archivo);
 }
 
-/* void Crear(){
+void Crear(){
 	// abre o crear un fichero binario
 	// abrir el archivo
 	FILE * archivo = fopen(nombre_archivo, "a+b");
@@ -138,7 +138,7 @@ void Leer(){
 	
 	// mandar a llamar a leer
 	Leer();
-} */
+} 
 
 /* void Actualizar(){
 	FILE * archivo = fopen(nombre_archivo, "r+b"); // Lectura o escritura de un archivo binario.
