@@ -1,6 +1,10 @@
 // REALIZADO POR GRUPO 2
 // AXEL, PAULA, HENRY, ERICK
 #include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <sstream>
 using namespace std;
 
 // nombre del archivo no cambia en la variable
@@ -21,6 +25,8 @@ void Leer();
 void Crear();
 void Actualizar(); //Metodo Actualizar.
 void Borrar(); //Metodo Borrar.
+void Fase2(); // Traductor
+
 
 // MENU CON LAS OPCIONES ORDENADAS
 main(){
@@ -33,6 +39,7 @@ main(){
         cout << "\n\t2. Agregar nueva palabra al listado"<<endl;
         cout << "\n\t3. Actualizar palabras"<<endl;
         cout << "\n\t4. Borrar palabras"<<endl;
+        cout << "\n\t5. Traducir palabras"<<endl;
         cout << "\n\t0. Salir"<<endl;
         cout << "\nSelecciona una opcion: ";
         cin >> opcion;
@@ -50,6 +57,9 @@ main(){
             case 4:
                 Borrar();
                 break;
+            case 5:
+            	Fase2();
+            	break;
             case 0:
                 cout << "Ha salido del programa";
                 return 0;
@@ -196,6 +206,46 @@ void Borrar(){
 }
 
 
+void Fase2() {
+    system("cls");
+
+  FILE* archivo = fopen(nombre_archivo, "rb");
+  Traductor traductor;
+  string textoTraducido;
+
+  cout << "Ingrese el texto a traducir (presiona Enter después de cada palabra, escribe 'fin' para finalizar): ";
+
+  while (true) {
+    string palabra;
+    cin >> palabra;
+    if (palabra == "fin") break;
+
+    fseek(archivo, 0, SEEK_SET);
+    bool traducido = false;
+
+    while (fread(&traductor, sizeof(Traductor), 1, archivo)) {
+      if (palabra == traductor.palabras) {
+        textoTraducido.append(traductor.traduccion);
+        textoTraducido.append(" ");        traducido = true;
+        break;
+      }
+    }
+
+    if (!traducido) {
+      textoTraducido += palabra + " ";
+    }
+
+    // Comprueba si hay un carácter de nueva línea después de cada palabra
+    if (cin.get() == '\n') {
+      textoTraducido += "\n"; // Agregar salto de linea en los input
+    }
+  }
+
+  fclose(archivo);
+
+  // Imprimir lo traducido
+  cout << "\nTexto traducido:\n" << textoTraducido << endl;
+}
 
 
 
