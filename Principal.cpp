@@ -206,16 +206,18 @@ void Borrar(){
 }
 
 
-void Fase2() {
-    system("cls");
+void Fase2() { 
+system("cls");
 
-  FILE* archivo = fopen(nombre_archivo, "rb");
-  Traductor traductor;
-  string textoTraducido;
+FILE* archivo = fopen(nombre_archivo, "rb");
+Traductor traductor;
+string textoTraducido;
 
-  cout << "Ingrese el texto a traducir (presiona Enter después de cada palabra, escribe 'fin' para finalizar): ";
+cout << "Ingrese el texto a traducir (presiona Enter después de cada palabra, escribe 'fin' para finalizar): ";
 
-  while (true) {
+
+while (true) {
+	// AL MOMENTO DE ESCRIBIR FIN SE DETIENE
     string palabra;
     cin >> palabra;
     if (palabra == "fin") break;
@@ -224,27 +226,57 @@ void Fase2() {
     bool traducido = false;
 
     while (fread(&traductor, sizeof(Traductor), 1, archivo)) {
-      if (palabra == traductor.palabras) {
-        textoTraducido.append(traductor.traduccion);
-        textoTraducido.append(" ");        traducido = true;
-        break;
-      }
+        if (palabra == traductor.palabras) {
+            textoTraducido.append(traductor.traduccion);
+            textoTraducido.append(" ");
+            traducido = true;
+            break;
+        }
     }
 
+// TRADUCIR LAS LLAVES SEGÚN CORRESPONDA EN EL IF
     if (!traducido) {
-      textoTraducido += palabra + " ";
+    	
+    static bool inicioSi = true;
+    static bool finSi = false;
+    static bool inicioEntonces = false;
+    static bool finEntonces = false;
+
+    if (palabra == "{") {
+        if (inicioSi) {
+            textoTraducido += "inicio si" + string(" ");
+            inicioSi = false;
+            finSi = true;
+        } else if (inicioEntonces) {
+            textoTraducido += "inicio entonces" + string(" ");
+            inicioEntonces = false;
+            finEntonces = true;
+        }
+    } else if (palabra == "}") {
+        if (finSi) {
+            textoTraducido += "finsi" + string(" ");
+            finSi = false;
+            inicioEntonces = true;
+        } else if (finEntonces) {
+            textoTraducido += "fin entonces" + string(" ");
+            finEntonces = false;
+            inicioSi = true;
+        }
+    } else {
+        textoTraducido += palabra + " ";
     }
+}
 
     // Comprueba si hay un carácter de nueva línea después de cada palabra
     if (cin.get() == '\n') {
-      textoTraducido += "\n"; // Agregar salto de linea en los input
+        textoTraducido += "\n"; // Agregar salto de linea en los input
     }
-  }
+}
 
-  fclose(archivo);
+fclose(archivo);
 
-  // Imprimir lo traducido
-  cout << "\nTexto traducido:\n" << textoTraducido << endl;
+// Imprimir lo traducido
+cout << "\nTexto traducido:\n" << textoTraducido << endl;
 }
 
 
